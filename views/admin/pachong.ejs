@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+    	.tablepc{
+    		width:600px;
+    		margin:20px;
+    	}
+    	.tablepc td{
+    		line-height:30px;
+    	}
+    </style>
+</head>
+<body>
+
+<table class="tablepc">
+	<tbody>
+		<tr>
+			<td>URL</td>
+			<td><input type="text" name="url" /><span>类似http://www.xxxx.com</span></td>
+		</tr>
+		<tr>
+			<td>参数</td>
+			<td><input type="text" name="params" /><span>类似?page=23中的page</span></td>
+		</tr>
+		<tr>
+			<td>起始页码</td>
+			<td><input type="text" name="pageStart" /><span>数字</span></td>
+		</tr>
+		<tr>
+			<td>最终页码</td>
+			<td><input type="text" name="pageEnd" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><button id="buttonBtn">开始抓取</button></td>
+		</tr>
+	</tbody>
+</table>
+<script src="/javascripts/pachong.js"></script>
+</body>
+</html>

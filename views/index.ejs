@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <!-- 头部导航栏 -->
+    <div id="header">
+        <div class="container">
+            <h1 id="logo">
+                <a href="/" title=<%=title%> id="site_name">QIEWK</a>
+            </h1>
+            <div class="toggle-topbar menu-icon" id="pull">
+                <a href="#"><span>Menu</span></a>
+            </div>
+            <div class="toogle-topbar-content" id="pull-menu">
+                <ul class="menu clearfix">
+                    <li class="first leaf">
+                        <a href="/CSS3" title="">CSS3</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="/mobile" title="">Mobile</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="/blog/tags/302.html" title="Sass教程">Sass</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="/JavaScript" title="JavaScript">JavaScript</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="http://fe.apelearn.com/?utm_source=w3cplus&amp;utm_medium=banner&amp;utm_campaign=w3cplus" title="视频教程">视频教程</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="/blog/translations" title="译文">译文</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="http://www.w3cplus.com/blog/tags/411.html" title="SVG">SVG</a>
+                    </li>
+                    <li class="leaf">
+                        <a href="/source/front-end-developer-excellent-tool.html" title="在线工具">工具</a>
+                    </li>
+                    <li class="last leaf">
+                        <a href="/tags" title="标签云">标签云</a>
+                    </li>
+                </ul>        <!-- /#main-menu -->
+            </div>
+        </div>
+    </div>
+    <!-- banner -->
+    <div class="banner">BANNER</div>
+    <div id="page">
+        <div class="container">
+            <!-- 左边 -->
+            <div class="col-main">
+                <div class="main-wrap">
+                    <div class="page-inner">
+                        <div class="region region-content">
+                            <div class="block-system-main">
+                                <div class="content">
+                                    <%
+                                        list.forEach(function(item){
+                                        let date = item.date.getFullYear()+"-"+item.date.getMonth()+"-"+item.date.getDate()
+                                    %>
+                                    <div class="node node-blog node-promoted node-teaser clearfix">
+                                        <h1>
+                                            <a href=<%=item.href%>
+                                               target="_blank"><%=item.title%></a>
+                                        </h1>
+
+                                        <div class="node-header">
+                                            <div class="submitted">
+                                                作者：<span>XXXX</span>
+                                                日期：<span><%=date%></span>
+                                                点击：<span><%=item.click%></span>
+                                            </div>
+                                            <!--<div class="tags">
+                                                <div class="field field-name-field-blog-tag field-type-taxonomy-term-reference field-label-hidden">
+                                                    <div class="field-items">
+                                                        <div class="field-item even">
+                                                            <a href="/blog/tags/605.html"
+                                                               typeof="skos:Concept"
+                                                               property="rdfs:label skos:prefLabel"
+                                                               datatype=""
+                                                               target="_blank">box-decoration-break</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                        </div>
+
+
+                                        <div class="body-content clearfix">
+                                            <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                                                <div class="field-items">
+                                                    <div class="field-item even"
+                                                         property="content:encoded">
+                                                        <p><%=item.des%></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="more">
+                                            <a href=<%=item.href%>
+                                               class="node_read_more"
+                                               target="_blank">阅读全文</a>
+                                        </div>
+                                    </div>
+
+                                    <%
+                                        })
+                                    %>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右边 -->
+            <div class="col-extra">
+                <div class="region region-sidebar-second">
+                    <div id="block-block-18" class="block block-block">
+                        <h2>合作网站</h2>
+                        <div class="content">
+                            <ul class="clearfix"
+                                id="join_hands">
+                                <li>
+                                    <a href="https://github.com/airen/jsStudy"
+                                       target="_blank">JavaScript学习案例</a>
+                                </li>
+                                <li>
+                                    <a href="http://moyu-edu.com/js.html" target="_blank" title="墨鱼前端培训">墨鱼前端培训</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
