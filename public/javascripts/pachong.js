@@ -1,4 +1,3 @@
-
 function ajax(options) {
     options = options || {};
 
@@ -87,10 +86,15 @@ document.querySelector('#buttonBtn').onclick = function(){
     ajax({
         url: "http://localhost:3000/read",  //请求地址
         type: "POST",                       //请求方式
-        data: {url:'',params:'',pageStart:'',pageEnd:'ui'}, //请求参数
+        data: {
+            url:document.querySelector('#url').value,
+            params:document.querySelector('#params').value || 'page',
+            pageStart:document.querySelector('#pageStart').value || 1,
+            pageEnd:document.querySelector('#pageEnd').value || 0
+        }, //请求参数
         dataType: "json",
         success: function (response, xml) {
-            console.log(response);
+            document.querySelector('.tip').innerHTML = response;
         },
         fail: function (status) {
             

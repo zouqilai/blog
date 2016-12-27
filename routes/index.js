@@ -27,7 +27,13 @@ router.get('/read', function(req, res, next){
 /*ajax开始抓取数据*/
 router.post('/read', function(req, res, next){
 	//渲染抓取页面
-	console.log(req.body);
+	let url = req.body.url,
+		params = req.body.params,
+		pageStart = req.body.pageStart,
+		pageEnd = req.body.pageEnd;
+	read(url, params, pageStart, pageEnd,function(tip){
+		res.send(tip);
+	});
 });
 
 module.exports = router;
