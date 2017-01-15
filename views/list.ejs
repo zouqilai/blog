@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <!-- 头部导航栏 -->
     <% include header.ejs %>
     <!-- banner -->
     <div class="banner">BANNER</div>
@@ -18,7 +27,8 @@
                                     %>
                                     <div class="node node-blog node-promoted node-teaser clearfix">
                                         <h1>
-                                            <a href=<%=item.href%> target="_blank"><%=item.title%></a>
+                                            <a href=<%=item.href%>
+                                               target="_blank"><%=item.title%></a>
                                         </h1>
 
                                         <div class="node-header">
@@ -33,7 +43,8 @@
                                         <div class="body-content clearfix">
                                             <div class="field field-name-body field-type-text-with-summary field-label-hidden">
                                                 <div class="field-items">
-                                                    <div class="field-item even">
+                                                    <div class="field-item even"
+                                                         property="content:encoded">
                                                         <p><%=des%></p>
                                                     </div>
                                                 </div>
@@ -42,14 +53,16 @@
 
 
                                         <div class="more">
-                                            <a href=<%=item.href%> class="node_read_more" target="_blank">阅读全文</a>
+                                            <a href=<%=item.href%>
+                                               class="node_read_more"
+                                               target="_blank">阅读全文</a>
                                         </div>
                                     </div>
 
                                     <%
                                         })
                                     %>
-                                    
+
                                     <div class="my-page">
                                         <div>FIRST</div>
                                         <div>PREV</div>
@@ -68,8 +81,7 @@
                                         <div>NEXT</div>
                                         <div>LAST</div>
                                     </div>
-
-                                </div>
+                                </div>  
                             </div>
                         </div>
                     </div>

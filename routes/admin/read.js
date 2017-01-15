@@ -11,7 +11,17 @@ let db = require(path.resolve('./bin/db/index.js'));
 //let url = 'http://www.w3cplus.com/';
 //let oldPage =131,endPage=-1;
 function readContent(url,callback){
-	//request('http://www.w3cplus.com/',);
+	request('http://www.w3cplus.com'+url,function(err,response,body){
+		let content = '';
+		if(!err && response.statusCode == 200){
+			let $ =cheerio.load(body,{decodeEntities: false});
+				content = $('.body-content .field-item.even').html();
+				/*if(content===null){
+					console.log(body);
+				}*/
+		}
+		callback(err,content || null);
+	});
 }
 function read (url,callback) {
 	request(url,function(err,response,body){
@@ -31,19 +41,27 @@ function read (url,callback) {
 
 		$('.node-teaser').each(function(){
 			let $me = $(this);
-			
+			//console.log($me.find('a').attr('href').match(/\/([a-z0-9]+)/)[1]);
 			items.push({
 				title: $me.find('h1 a').text(),
 				href: $me.find('a').attr('href'),
-				des: $me.find('.field-item p').text()
+				des: $me.find('.field-item p').text(),
+				typenav: $me.find('a').attr('href').match(/\/([a-z0-9]+)/)[1]
 			});
 		});
+
 		async.forEach(items,function(item,cb){
-				readContent(item.href,function(err,desc){
-                      item.des = desc;
-                      cb();
-				});
-		},function(){
+			readContent(item.href,function(err,content){
+				//console.log(3,content.length);			
+				if(content){
+					item.content = content;
+				}else{
+					item.content = item.des;
+                }
+                cb();
+			});
+		},function(err){
+			//console.log(3,items);
 			callback(err,items);
 		})
 
@@ -54,11 +72,13 @@ function read (url,callback) {
 }
 
 function write (messages,callback) {
+	//console.log(messages.length);
 	//endPage = messages.page;
 	async.forEach(messages,function(item,cb){
-		db.remove(item,function(err,doc){
+		/*db.remove(item,function(err,doc){
+			//console.log(1);
+		});*/
 
-		});
 		db.create(item,function(err,doc){
 			//let newDate = new Date();
 			//doc.date = newDate.getFullYear()+"-"+newDate.getMonth()+"-"+newDate.getDate();
@@ -68,7 +88,7 @@ function write (messages,callback) {
 }
 
 function readAsync(url,params,oldPage,pageEnd,callback){
-	var urls = url + '/?'+ params +'=' + oldPage;
+	var urls = url + '?'+ params +'=' + oldPage;
 	//console.log(url);
 	async.waterfall([
 		/*function(cb){
@@ -79,8 +99,26 @@ function readAsync(url,params,oldPage,pageEnd,callback){
 				cb(err,messages);
 			});
 		},
+		function(messages,callback){
+			//console.log(1,messages);
+			async.filter(messages,function(item,cb){
+				let title = '';
+				db.find({title:item.title},function(err,docs){
+					if(!err){
+						title = docs.title;
+					}
+				});
+				//console.log('rt',title);
+				cb(null,item.title!=title);
+
+			},function(err,results){
+				//console.log('r',results.length);
+				callback(err,results);
+			});
+		},
 		function(messages,cb){
 
+			//console.log('w',messages.length);
 			write(messages,cb);
 		}
 	],function(err,result){

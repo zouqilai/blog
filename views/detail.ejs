@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= data.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <!-- 头部导航栏 -->
+    <% include header.ejs %>
+    <!-- banner -->
+    <div class="banner">BANNER</div>
+    <div id="page">
+        <div class="container">
+            <!-- 左边 -->
+            <div class="col-main">
+                <div class="main-wrap">
+                    <div class="page-inner">
+                        <div class="region region-content">
+                            <div class="block-system-main">
+                                <div class="content">
+                                        <h1 class="title" id="page-title"><%=JSON.parse(data)[0].title%></h1>
+                                        <div class="node-header">
+                                            <div class="submitted clearfix">
+                                                作者：<span>大漠</span>
+                                                日期：<span><%=JSON.parse(data)[0].date.toLocaleString()%></span>
+                                                点击：<span><%=JSON.parse(data)[0].click%></span>
+                                            </div>
+                                        </div>
+                                        <div class="my-content"><%-JSON.parse(data)[0].content%></div>
+                                    <br />
+                                    <%= data._id %>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右边 -->
+            <% include right.ejs %>
+        </div>
+    </div>
+</body>
+</html>

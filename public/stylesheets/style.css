@@ -236,6 +236,26 @@ body {
     color: #404040;
     font: 14px / 1.42857 "Microsoft YaHei","微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+*:first-child + html .clearfix {
+    min-height: 1%;
+}
+ul.menu {
+    border: none;
+    list-style: none;
+    text-align: left;
+}
 /* Comm */
 ::selection{background:#3D3D3D;color:#FFF;}
 a {text-decoration: none;font-size:14px;}
@@ -834,11 +854,27 @@ body.logged-in #header {
     }
 }
 
+.my-content{
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 25px;
+}
 
+.my-page{
+    overflow: hidden;
+}
+.my-page-ul li,.my-page div{
+    float: left;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin:5px;
+    cursor: pointer;
+}
 
-
-
-
+.my-page-ul li.bg{
+    background: rgba(0,103,5,1);
+    color: #fff;
+}
 
 
 
